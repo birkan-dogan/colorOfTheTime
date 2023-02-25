@@ -74,4 +74,21 @@ const interval = setInterval(function () {
   color.textContent = convertRGBtoHex(numberA, numberB, numberC);
 }, 1000);
 
-clearInterval(interval);
+// clearInterval(interval);
+
+// copy the code to clipboard
+color.onclick = function () {
+  document.execCommand("copy");
+};
+
+color.addEventListener("copy", function (event) {
+  event.preventDefault();
+  if (event.clipboardData) {
+    event.clipboardData.setData("text/plain", color.textContent);
+    event.clipboardData.getData("text");
+    notify.style.display = "block";
+    setTimeout(function () {
+      notify.style.display = "none";
+    }, 3000);
+  }
+});
